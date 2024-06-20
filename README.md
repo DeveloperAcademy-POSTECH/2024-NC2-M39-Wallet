@@ -41,13 +41,15 @@ Apple developer에 서술된 방식을 통해 직접 입력한 정보를 바탕�
 
 1. 지갑에 등록하려면 파일 확장자명이 .pkpass이다. pkpass파일을 만들기 위해서는 인증서를 통하여 서명을 해야한다. 서명을 하기전 파일은 pass이다.
 
-   ![스크린샷 2024-06-19 20.15.34](/Users/tenedict/Library/Application Support/typora-user-images/스크린샷 2024-06-19 20.15.34.png)
+<img width="710" alt="image" src="https://github.com/DeveloperAcademy-POSTECH/2024-NC2-M39-Wallet/assets/108652767/15ed1b99-2753-4e42-8003-2b4e998fcf02">
+
 
 2. 위는 애플 Developer Guide에 나오는 파일 형식이다. 
 
    pass 패키지 안에 저런 구조를 필요로 한다.
 
-   ![스크린샷 2024-06-19 20.17.00](/Users/tenedict/Library/Application Support/typora-user-images/스크린샷 2024-06-19 20.17.00.png)
+   <img width="693" alt="image" src="https://github.com/DeveloperAcademy-POSTECH/2024-NC2-M39-Wallet/assets/108652767/b5772297-8712-40c7-944d-27be9e39d3fd">
+
 
    그리고 패스의 모양마다 필요한 파일들이 다르다.
 
