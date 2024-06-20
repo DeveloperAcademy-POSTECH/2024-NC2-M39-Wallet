@@ -3,6 +3,16 @@
 
 Apple Wallet에는 NFC로 결제하는 카드를 등록하는 기능이외에 바코드나 QR, 비행기티켓등을 저장할 수 있는 Pass가 있습니다.
 
+**PassKit (Apple Pay and Wallet)**
+
+앱에서 Apple Pay 결제를 처리하고 Wallet 앱용 패스를 생성 및 배포
+
+PassKit API를 사용하여 Apple Pay를 지원하면 사용자는 앱을 떠나지 않고도 실제 상품과 서비스를 구매 가능
+
+**Wallet Passes**
+
+Wallet 앱용 패스를 생성, 배포, 업데이트합니다.
+
 ## pass
 
 탑승권, 승차권, 멤버쉽카드, 쿠폰등을 활용할 수 있다.
@@ -13,7 +23,17 @@ Apple Wallet에는 NFC로 결제하는 카드를 등록하는 기능이외에 �
 
 위는 한국에서 정식으로 지원하는 패스이다. 
 
-Pass파일은 애플의 Developer 계정이 있다면 쉽게 만들 수 있다는 것을 알았고 직접 커스텀해서 Pass지갑에 추가하고 싶었다.
+## 기술 토픽에서 집중한 부분과 그 이유
+
+Wallet에 개인 카드 등을 넣기 위해서는 먼저 지류 카드의 정보를 패스화 시키는 과정에 대한 이해가 필요합니다.
+
+이 과정은 passkit이 implement된 서드 파티 앱을 통해 가능하게 되기 때문에
+
+저희는 **wallet pass**를 만들어 보는것에 집중하였고, 해당 기술에 대한 핵심적인 logic을 이해하고자
+
+Apple developer에 서술된 방식을 통해 직접 입력한 정보를 바탕으로 Custom pass를 만드는 방법을
+
+구현해보기로 결정했습니다.
 
 
 
@@ -34,6 +54,21 @@ Pass파일은 애플의 Developer 계정이 있다면 쉽게 만들 수 있다�
    > https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html#//apple_ref/doc/uid/TP40012195-CH4-SW1
 
 3. 패스에 사용되는 레이아웃을 선택하고 Json파일 내의 양식을 활용해 작성하고 필요한 이미지 파일을 준비한다. 
+
+   ```json
+   {
+         ...
+         "passTypeIdentifier" : "
+      your pass type identifier
+      ",
+          "teamIdentifier" : "
+     your Team ID
+      ",
+          ...
+     }
+   ```
+
+   
 
 4. pass파일이 준비되었다면 서명을 할 차례이다.
 
@@ -67,3 +102,21 @@ Pass파일은 애플의 Developer 계정이 있다면 쉽게 만들 수 있다�
 
 - PKBarcodeFormatCode128
   - 1차원 형식의 바코드
+
+## 프로토타입
+
+![스크린샷 2024-06-20 09.28.22](/Users/tenedict/Library/Application Support/typora-user-images/스크린샷 2024-06-20 09.28.22.png)
+
+### 기능
+
+ 여러가지 정보나 이미지가 포함된 url, 갤러리를 공유할 때 디지털 명함을 만들어 빠르게 공유할 수 있습니다.
+
+1. 디지털 명함에 들어갈 여러가지 정보를 입력합니다
+2. 자신의 사진을 촬영하거나 갤러리에서 이미지를 추가하고
+3. Add to Apple wallet 기능을 통해 wallet에 추가하면 Apple Wallet을 실행시켜 pass화 시킨 디지털 명함을 Apple wallet으로 보냅니다.
+
+이러한 방법을 통해 커스텀된 디지털 명함을 만들 수 있습니다.
+
+### 아직 프로토 타입인 이유
+
+pass파일에 서명을 하는 과정을 위해 django와 연결을 했으나 django에서 서명을 하는 부분에서 계속 막혀서 아직 완성하지 못하였다.
